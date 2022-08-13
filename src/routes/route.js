@@ -1,7 +1,8 @@
 const express = require('express');
 const myHelper = require('../util/helper')
 const underscore = require('underscore')
-
+const userModel = require('../Model/userModel');
+const userController =require('../Controllers/controller')
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
@@ -36,6 +37,10 @@ router.get('/candidates/:canidatesName', function(req, res){
     res.send('Done')
 })
 
+
+router.post('/createUser',userController.createUser)  // handler
+
+router.post('/getUserData',userController.getUser)  // handler
 
 module.exports = router;
 // adding this comment for no reason
