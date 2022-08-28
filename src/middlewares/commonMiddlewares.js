@@ -1,15 +1,25 @@
-const userModel = require("../models/userModel")
-const orderModel = require("../models/orderModel")
-
 const mw = function (req, res, next) {
-    let isFreeAppUser = req.headers["isfreeappuser"]
-    if (!isFreeAppUser) {
-        return res.send("Header is Not Present")
-    } else
+    let data = req.headers
+    if (data.hasOwnProperty("isfreeappuser") === false) {
+        res.send({ error: "Request Is Missing A mandatory Header" })
+    } else {
         next()
-
+    }
 }
 
+
+
+//     let isFreeAppUser = req.headers["isfreeappuser"]
+//     if (!isFreeAppUser) {
+
+//         return res.send("Header is Not Present")
+
+//     } else if (isFreeAppUser === "true" || isFreeAppUser === "false") {
+//         next()
+//     } else
+
+//         return res.send("Please Provide Boolean Value")
+// }
 module.exports.mw = mw
 
 
